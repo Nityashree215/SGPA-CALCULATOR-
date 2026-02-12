@@ -1,0 +1,131 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  font-family: "Segoe UI", Tahoma, sans-serif;
+  background: linear-gradient(135deg, #667eea, #764ba2);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Main card */
+.card {
+  background: #ffffff;
+  padding: 25px 30px;
+  border-radius: 12px;
+  width: 100%;
+  max-width: 450px;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+}
+
+/* Header */
+h1 {
+  text-align: center;
+  margin-bottom: 10px;
+  color: #333;
+}
+
+#welcome {
+  text-align: center;
+  margin-bottom: 10px;
+  font-weight: 600;
+  color: #555;
+}
+
+/* Inputs */
+input {
+  width: 100%;
+  padding: 10px 12px;
+  margin: 6px 0;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  font-size: 14px;
+}
+
+input:focus {
+  outline: none;
+  border-color: #667eea;
+}
+
+/* Subject row */
+.subject-row {
+  display: grid;
+  grid-template-columns: 1.2fr 0.8fr 0.8fr 0.8fr 40px;
+  gap: 6px;
+  margin-bottom: 8px;
+  align-items: center;
+}
+
+.subject-row input {
+  margin: 0;
+}
+
+/* Delete button in row */
+.subject-row button {
+  background: #e53e3e;
+  border: none;
+  color: white;
+  border-radius: 6px;
+  cursor: pointer;
+  padding: 8px;
+}
+
+.subject-row button:hover {
+  opacity: 0.9;
+}
+
+/* Buttons group */
+.buttons {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+  margin-top: 10px;
+}
+
+/* General button */
+.btn {
+  flex: 1;
+  padding: 10px;
+  border: none;
+  border-radius: 6px;
+  font-size: 14px;
+  cursor: pointer;
+  color: white;
+  transition: transform 0.1s ease, opacity 0.1s ease;
+}
+
+.btn:hover {
+  transform: translateY(-1px);
+  opacity: 0.9;
+}
+
+.btn.add {
+  background: #48bb78;
+}
+
+.btn.calc {
+  background: #667eea;
+}
+
+/* Reset & Logout */
+.btn.reset {
+  margin-top: 10px;
+  width: 100%;
+  background: #e53e3e;
+}
+
+/* Result box */
+.result {
+  margin-top: 15px;
+  padding: 10px;
+  text-align: center;
+  font-weight: bold;
+  font-size: 16px;
+  color: #333;
+  background: #f7f7f7;
+  border-radius: 6px;
+}

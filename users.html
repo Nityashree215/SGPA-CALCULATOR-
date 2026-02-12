@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Users & Data</title>
+  <link rel="stylesheet" href="style.css" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+</head>
+<body>
+  <div class="card">
+    <h1>👥 Users & Saved Data</h1>
+
+    <p id="count"></p>
+
+    <div id="userList"></div>
+
+    <div style="margin-top:10px; display:flex; gap:10px;">
+      <button class="btn calc" onclick="goBack()">⬅ Back</button>
+      <button class="btn reset" onclick="clearAll()">🗑 Clear All Data</button>
+    </div>
+  </div>
+
+<script>
+function loadUsers() {
+  const users = JSON.parse(localStorage.getItem("users") || "{}");
+  const userListDiv = document.getElementById("userList");
+  const names = Object.keys(users);
+
+  document.getElementById("count").innerText = `Total Registered Users: ${names.length}`;
+
+  if (names.length === 0) {
+    userListDiv.innerHTML = "<p>No users found.</p>";
+    return;
+  }
+
+  let html = "<ul>";
+  names.forEach(u => {
+    const records = JSON.parse(localStorage.getItem("sgpaRecords_" + u) || "[]");
+    html += `<li><b>${u}</b> — ${records.length} SGPA record(s)</li>`;
+  });
+  html += "</ul>";
+
+  userListDiv.innerHTML = html;
+}
+
+function goBack() {
+  window.location.href = "index.html";
+}
+
+function clearAll() {
+  if (!confirm("This will delete ALL users and records. Continue?")) return;
+  localStorage.clear();
+  loadUsers();
+}
+
+loadUsers();
+</script>
+</body>
+</html>

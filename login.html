@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Login - SGPA System</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: linear-gradient(135deg, #667eea, #764ba2);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+    .card {
+      background: #fff;
+      padding: 25px;
+      border-radius: 10px;
+      width: 300px;
+      text-align: center;
+      box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+    }
+    input, button {
+      width: 100%;
+      padding: 10px;
+      margin: 8px 0;
+    }
+    button {
+      background: #667eea;
+      color: white;
+      border: none;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <h2>SGPA Login</h2>
+    <input id="username" placeholder="Username" />
+    <input id="password" type="password" placeholder="Password" />
+    <button onclick="login()">Login</button>
+    <button onclick="register()">Register</button>
+    <p id="msg"></p>
+  </div>
+
+<script>
+function getUsers() {
+  return JSON.parse(localStorage.getItem("users") || "{}");
+}
+
+function saveUsers(users) {
+  localStorage.setItem("users", JSON.stringify(users));
+}
+
+function register() {
+  const u = username.value;
+  const p = password.value;
+  if (!u || !p) return msg.innerText = "Enter username & password";
+
+  const users = getUsers();
+  if (users[u]) return msg.innerText = "User already exists";
+
+  users[u] = { password: p };
+  saveUsers(users);
+  msg.innerText = "Registered! Now login.";
+}
+
+function login() {
+  const u = username.value;
+  const p = password.value;
+
+  const users = getUsers();
+  if (!users[u] || users[u].password !== p) {
+    msg.innerText = "Invalid login";
+    return;
+  }
+
+  localStorage.setItem("currentUser", u);
+  window.location.href = "index.html";
+}
+</script>
+</body>
+</html>

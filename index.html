@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>SGPA Calculator</title>
+  <link rel="stylesheet" href="style.css" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+</head>
+<body>
+
+  <!-- Login check -->
+  <script>
+    const user = localStorage.getItem("currentUser");
+    if (!user) {
+      window.location.href = "login.html";
+    }
+  </script>
+
+  <div class="card">
+    <div style="display:flex; justify-content: space-between; align-items:center;">
+      <h1>🎓 SGPA Calculator</h1>
+      <button onclick="logout()" class="btn reset" style="width:auto; padding:6px 10px;">Logout</button>
+    </div>
+
+    <p id="welcome" style="text-align:center; font-weight:bold;"></p>
+
+    <input type="text" id="studentName" placeholder="Enter Student Name" />
+
+    <div id="subjects"></div>
+
+    <div class="buttons">
+      <button class="btn add" onclick="addSubject()">➕ Add Subject</button>
+      <button class="btn calc" onclick="calculateSGPA()">📊 Calculate SGPA</button>
+    </div>
+
+    <button class="btn reset" onclick="resetAll()">🔄 Reset</button>
+
+    <!-- New button to view users & data -->
+    <button class="btn calc" style="margin-top:10px;" onclick="window.location.href='users.html'">
+      👥 View Users & Data
+    </button>
+
+    <div id="result" class="result"></div>
+  </div>
+
+  <script src="script.js"></script>
+
+  <script>
+    // Show logged-in user
+    const currentUser = localStorage.getItem("currentUser");
+    if (currentUser) {
+      document.getElementById("welcome").innerText = "Welcome, " + currentUser;
+    }
+
+    function logout() {
+      localStorage.removeItem("currentUser");
+      window.location.href = "login.html";
+    }
+  </script>
+
+</body>
+</html>
